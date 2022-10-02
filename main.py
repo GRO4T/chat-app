@@ -1,11 +1,24 @@
 from flask import Flask, render_template
+from flask_mysqldb import MySQL 
+
+from app.db import mysql_connect
+
 
 app = Flask(__name__)
+db_connector = mysql_connect(app)
 
 
 @app.route('/')
 def root():
     return render_template('index.html', msg="chat app")
+
+
+@app.route("/user_profiles", methods=["GET"])
+def get_all_user_profiles():
+    cur = db_connector.connection.cursor()
+    cur.execute("select * from user_profile")
+    rs = cur.fetchall()
+    return render_template('index.html', msg=str(rs))
 
 
 if __name__ == '__main__':
