@@ -6,3 +6,9 @@ handlers:
   # the entire handlers section) when there are no static files defined.
 - url: /.*
   script: auto
+
+env_variables:
+  MYSQL_HOST: "130.61.124.252"
+  MYSQL_USER: "developer"
+  MYSQL_PASSWORD: "Test123!"
+  MYSQL_DB: "chat_app"
